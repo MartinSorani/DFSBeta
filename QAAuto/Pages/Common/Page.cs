@@ -17,7 +17,14 @@ namespace QAAuto.Pages.Common
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T LoadPage<T>() where T : Page, new();
+        T LoadPage<T>(T page) where T : Page, new();
+
+
+        /// <summary>
+        /// this method can be overriden in any page object in order to perform custom actions on page load
+        /// </summary>
+        /// <returns></returns>
+        Page LoadPage();
 
 
         /// <summary>

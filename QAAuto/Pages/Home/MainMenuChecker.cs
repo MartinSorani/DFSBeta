@@ -2,9 +2,8 @@
 
 namespace QAAuto.Pages.Home
 {
-    public class MainMenuChecker : AdvancedPageChecker<MainMenu>        
+    public class MainMenuChecker : AdvancedPageChecker<MainMenu>
     {
-
         private MainMenu page;
         public MainMenuChecker(MainMenu page) : base(page)
         {
