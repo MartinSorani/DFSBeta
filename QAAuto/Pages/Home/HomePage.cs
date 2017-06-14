@@ -1,7 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using QAAuto.Pages.Approval;
 using QAAuto.Pages.Common;
+using QAAuto.Pages.Data_Upload;
 using QAAuto.Pages.Exceptions;
+using QAAuto.Pages.Filed;
 
 namespace QAAuto.Pages.Home
 {
@@ -9,7 +12,7 @@ namespace QAAuto.Pages.Home
     {
         //Map
         #region Home Page Elements
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button[ng-reflect-label='Review exceptions']")]
+        [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(1) arc-navigation-button")]
         public IWebElement reviewExceptionsButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(1) span")]
@@ -18,7 +21,7 @@ namespace QAAuto.Pages.Home
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(1) div.value")]
         public IWebElement percentageTextExceptionsResolved { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button[ng-reflect-label='Approve & submit funds']")]
+        [FindsBy(How = How.CssSelector, Using = "dashboard-section:nth-child(2) arc-navigation-button")]
         public IWebElement approveSubmitFundsButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(2) span")]
@@ -27,7 +30,7 @@ namespace QAAuto.Pages.Home
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(2) div.value")]
         public IWebElement percentageTextApproved { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button[ng-reflect-label='Review filings']")]
+        [FindsBy(How = How.CssSelector, Using = "dashboard-section:nth-child(3) arc-navigation-button")]
         public IWebElement reviewFilingsButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(3) span")]
@@ -36,7 +39,7 @@ namespace QAAuto.Pages.Home
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(3) div.value")]
         public IWebElement percentageTextFiled { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button[ng-reflect-label='Review funds with missing data']")]
+        [FindsBy(How = How.CssSelector, Using = "div.hero-section arc-navigation-button")]
         public IWebElement reviewFundsWithMissingDataButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "div.hero-section span")]
@@ -70,10 +73,11 @@ namespace QAAuto.Pages.Home
             return percentageTextExceptionsResolved.Text;
         }
 
-        public void ClickApproveSubmitFundsButton()
+        public ApprovalPage ClickApproveSubmitFundsButton()
         {
             log.Info("Clicking approve & submit funds button");
             approveSubmitFundsButton.Click();
+            return new ApprovalPage(GetWebUser());
         }
 
         public string GetDaysLeftTextApproved()
@@ -88,10 +92,11 @@ namespace QAAuto.Pages.Home
             return percentageTextApproved.Text;
         }
 
-        public void ClickReviewFilingsButton()
+        public FiledPage ClickReviewFilingsButton()
         {
             log.Info("Clicking review filings button");
             reviewFilingsButton.Click();
+            return new FiledPage(GetWebUser());
         }
 
         public string GetDaysLeftTextFiled()
@@ -106,10 +111,11 @@ namespace QAAuto.Pages.Home
             return percentageTextFiled.Text;
         }
 
-        public void ClickReviewFundsWithMissingDataButton()
+        public DataCollectedPage ClickReviewFundsWithMissingDataButton()
         {
             log.Info("Clicking review funds with missing data button");
             reviewFundsWithMissingDataButton.Click();
+            return new DataCollectedPage(GetWebUser());
         }
 
         public string GetDaysLeftTextHeroSection()
