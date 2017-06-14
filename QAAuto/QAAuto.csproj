@@ -87,13 +87,20 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Pages\Approval\ApprovalPage.cs" />
+    <Compile Include="Pages\Approval\ApprovalPageChecker.cs" />
     <Compile Include="Pages\Common\AdvancedPage.cs" />
     <Compile Include="Pages\Common\AdvancedPageChecker.cs" />
     <Compile Include="Pages\Common\AdvancedPageUtils.cs" />
     <Compile Include="Pages\Common\Page.cs" />
     <Compile Include="Pages\Common\WebUser.cs" />
+    <Compile Include="Pages\Data Upload\DataCollectedPage.cs" />
+    <Compile Include="Pages\Data Upload\DataCollectedPageChecker.cs" />
     <Compile Include="Pages\Exceptions\ExceptionsPage.cs" />
     <Compile Include="Pages\Exceptions\ExceptionsPageChecker.cs" />
+    <Compile Include="Pages\Filed\FiledPage.cs" />
+    <Compile Include="Pages\Filed\FiledPageChecker.cs" />
+    <Compile Include="Pages\Filing\MilestoneBar.cs" />
     <Compile Include="Pages\Home\HomePage.cs" />
     <Compile Include="Pages\Home\HomePageChecker.cs" />
     <Compile Include="Pages\Home\MainMenu.cs" />

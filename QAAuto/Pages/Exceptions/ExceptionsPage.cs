@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using QAAuto.Pages.Common;
+using QAAuto.Pages.Filing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,18 @@ namespace QAAuto.Pages.Exceptions
 
         #endregion
 
+        private MilestoneBar milestoneBar;
+
         WebUser webUser;
         public ExceptionsPage(WebUser webUser) : base(webUser)
         {
             this.webUser = webUser;
+            milestoneBar = new MilestoneBar(webUser);
+        }
+
+        public MilestoneBar MilestoneBar
+        {
+            get { return milestoneBar; }
         }
 
         #region Exceptions Actions
