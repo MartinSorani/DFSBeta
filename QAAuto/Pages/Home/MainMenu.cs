@@ -3,23 +3,45 @@ using OpenQA.Selenium.Support.PageObjects;
 using Protractor;
 using QAAuto.Pages.Common;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace QAAuto.Pages.Home
 {
     public class MainMenu : AdvancedPage
     {
-        //TODO separate mapping
         //Map
         #region Main Menu Elements
         [FindsBy(How = How.Id, Using = "nav-logo")]
-        IWebElement homeLogo { get; set; }
+        public IWebElement homeLogo { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "arc-dropdown:nth-child(2)")]
-        IWebElement nMenu { get; set; }
+        public IWebElement nMenu { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "arc-dropdown:nth-child(3)")]
-        IWebElement monthMenu { get; set; }
+        public IWebElement monthMenu { get; set; }
+
         [FindsBy(How = How.CssSelector, Using = "arc-dropdown:nth-child(4)")]
-        IWebElement fundsMenu { get; set; }
+        public IWebElement fundsMenu { get; set; }
+        
+        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(1)")]
+        public IWebElement filing { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(2)")]
+        public IWebElement data { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(3)")]
+        public IWebElement analytics { get; set; }
+
+        [FindsBy(How = How.Id, Using = "bell-logo")]
+        public IWebElement bellLogo { get; set; }
+
+        [FindsBy(How = How.Id, Using = "profile-logo")]
+        public IWebElement profileLogo { get; set; }
+
+        [FindsBy(How = How.Id, Using = "grid-logo")]
+        public IWebElement gridLogo { get; set; }        
+
         #endregion
 
         private static ConcurrentDictionary<WebUser, MainMenu> menu = new ConcurrentDictionary<WebUser, MainMenu>();
@@ -69,6 +91,41 @@ namespace QAAuto.Pages.Home
             return this;
         }
 
+        public void ClickFiling()
+        {
+            log.Info("Clicking filing");
+            filing.Click();
+        }
+
+        public void ClickData()
+        {
+            log.Info("Clicking data");
+            data.Click();
+        }
+
+        public void ClickAnalytics()
+        {
+            log.Info("Clicking analytics");
+            analytics.Click();
+        }
+
+        public void ClickBellLogo()
+        {
+            log.Info("Clicking bell logo");
+            bellLogo.Click();
+        }
+
+        public void ClickProfileLogo()
+        {
+            log.Info("Clicking profile logo");
+            profileLogo.Click();
+        }
+
+        public void ClickGridLogo()
+        {
+            log.Info("Clicking grid logo");
+            gridLogo.Click();
+        }
         #endregion
 
     }
