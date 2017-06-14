@@ -31,8 +31,17 @@ namespace QAAuto.Pages.Common
             return Home.MainMenu.GetMainMenu(GetWebUser());
         }
 
-        public T LoadPage<T>() where T : Page, new()
+        public virtual Page LoadPage()
         {
+            return this;
+        }
+
+        public T LoadPage<T>(T page) where T : Page, new()
+        {
+            if (page == null)
+            {
+                throw new Exception("Unable to load null page");
+            }
             return (T)Activator.CreateInstance(typeof(T), GetWebUser());
         }
 
