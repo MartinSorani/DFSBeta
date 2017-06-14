@@ -22,15 +22,18 @@ namespace QAAuto.Pages.Home
         public IWebElement monthMenu { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "arc-dropdown:nth-child(4)")]
+        public IWebElement complexMenu { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "arc-dropdown:nth-child(5)")]
         public IWebElement fundsMenu { get; set; }
-        
+
         [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(1)")]
         public IWebElement filing { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(2)")]
         public IWebElement data { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button:nth-child(3)")]
+        [FindsBy(How = How.CssSelector, Using = "div.right-nav arc-navigation-button:nth-child(3)")]
         public IWebElement analytics { get; set; }
 
         [FindsBy(How = How.Id, Using = "bell-logo")]
@@ -40,7 +43,7 @@ namespace QAAuto.Pages.Home
         public IWebElement profileLogo { get; set; }
 
         [FindsBy(How = How.Id, Using = "grid-logo")]
-        public IWebElement gridLogo { get; set; }        
+        public IWebElement gridLogo { get; set; }
 
         #endregion
 
@@ -81,6 +84,13 @@ namespace QAAuto.Pages.Home
         {
             log.Info("Clicking n-menu");
             nMenu.Click();
+            return this;
+        }
+
+        public MainMenu ClickComplexMenu()
+        {
+            log.Info("Clicking complex menu");
+            complexMenu.Click();
             return this;
         }
 
