@@ -98,10 +98,15 @@
     <Compile Include="Pages\Home\HomePageChecker.cs" />
     <Compile Include="Pages\Home\MainMenu.cs" />
     <Compile Include="Pages\Home\MainMenuChecker.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Types\AbstractTestBase.cs" />
+    <Compile Include="Tests\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\Role.cs" />
     <Compile Include="Users\User.cs" />
+    <Compile Include="Utils\Common\Assertions\AssertionItem.cs" />
+    <Compile Include="Utils\Common\Assertions\CustomAssertions.cs" />
+    <Compile Include="Utils\Common\Results\CheckpointResult.cs" />
+    <Compile Include="Utils\Common\Results\Result.cs" />
     <Compile Include="Utils\CommonUtils.cs" />
     <Compile Include="Utils\DBUtils.cs" />
   </ItemGroup>

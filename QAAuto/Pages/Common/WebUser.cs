@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Protractor;
+using QAAuto.Pages.Home;
 using QAAuto.Users;
 using System;
 
@@ -18,9 +19,9 @@ namespace QAAuto.Pages.Common
         {
             activePage = null;
             driver = new ChromeDriver();
-            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromMilliseconds(10);
+            driver.Manage().Timeouts().AsynchronousJavaScript = TimeSpan.FromSeconds(120);
             ngDriver = new NgWebDriver(driver);
-            user = new User();
+            user = new User();      //Implement user creation mechanism once we have a viable way to do so through the app or db
         }
 
         public NgWebDriver GetDriver()
@@ -38,15 +39,33 @@ namespace QAAuto.Pages.Common
             return activePage;
         }
 
-        private void SetActivePage(Page page)
+        public void SetActivePage(Page page)
         {
             activePage = page;
         }
 
-        public T LoadPage<T>(T page) where T : Page, new()
+        public T LoadPage<T>(AdvancedPage page) where T : AdvancedPage, new()
         {
             SetActivePage(page);
             return page.LoadPage<T>(page);
+        }
+
+        public T Login<T>(AdvancedPage nextPage) where T : AdvancedPage
+        {
+            ngDriver.Navigate().GoToUrl(nextPage.GetUrl());
+            return (T)nextPage;
+        }
+
+        //In the future this method should take WebUser as parameter
+        public HomePage Login()
+        {
+            GetDriver().Navigate().GoToUrl(HomePage.HomeUrl());
+            return LoadPage<HomePage>(new HomePage(this));
+        }
+
+        public void CloseBrowser()
+        {
+            ngDriver.Quit();
         }
     }
 }

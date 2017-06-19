@@ -2,10 +2,11 @@
 
 namespace QAAuto.Pages.Home
 {
-    public class HomePageChecker : AdvancedPageChecker<HomePage>
+    public class HomePageChecker : AdvancedPageChecker
     {
         public HomePageChecker(HomePage page) : base(page)
         {
+
         }
     }
 }

@@ -1,11 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using QAAuto.Pages.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QAAuto.Pages.Exceptions
 {
@@ -23,12 +18,26 @@ namespace QAAuto.Pages.Exceptions
         [FindsBy(How = How.CssSelector, Using = "div.main-content div.sub-text")]
         public IWebElement dayLeftText { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Legacy')]")]
+        public IWebElement fistCell { get; set; }
+
         #endregion
 
         WebUser webUser;
+        ExceptionsPageChecker checker;
+
+        public ExceptionsPage() { }
+
         public ExceptionsPage(WebUser webUser) : base(webUser)
         {
             this.webUser = webUser;
+            PageFactory.InitElements(webUser.GetDriver(), this);
+            checker = new ExceptionsPageChecker(this);
+        }
+
+        public new ExceptionsPageChecker Verify()
+        {
+            return checker;
         }
 
         #region Exceptions Actions
