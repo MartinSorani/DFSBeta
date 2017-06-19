@@ -10,14 +10,18 @@ namespace QAAuto.Pages.Common
     {
         private readonly ThreadLocal<WebUser> tweb = new ThreadLocal<WebUser>();
         private AdvancedPageUtils<AdvancedPage> utils;
-        private AdvancedPageChecker<AdvancedPage> checker;
+        private AdvancedPageChecker checker;
         protected static Logger log = LogManager.GetCurrentClassLogger();
+        protected static string url;
+
+        public AdvancedPage() { }
 
         public AdvancedPage(WebUser webUser, params AdvancedPage[] page)
         {
             tweb.Value = webUser;
-            checker = new AdvancedPageChecker<AdvancedPage>(this);
+            checker = new AdvancedPageChecker(this);
             utils = new AdvancedPageUtils<AdvancedPage>(this);
+            webUser.GetDriver().WaitForAngular();
         }
 
         protected WebUser GetWebUser()
@@ -31,17 +35,14 @@ namespace QAAuto.Pages.Common
             return Home.MainMenu.GetMainMenu(GetWebUser());
         }
 
-        public virtual Page LoadPage()
+        public virtual AdvancedPage LoadPage()
         {
             return this;
         }
 
-        public T LoadPage<T>(T page) where T : Page, new()
+        public T LoadPage<T>(AdvancedPage page) where T : AdvancedPage, new()
         {
-            if (page == null)
-            {
-                throw new Exception("Unable to load null page");
-            }
+            GetWebUser().SetActivePage(page);
             return (T)Activator.CreateInstance(typeof(T), GetWebUser());
         }
 
@@ -51,10 +52,14 @@ namespace QAAuto.Pages.Common
             GetWebUser().GetDriver().Navigate().Refresh();
         }
 
-        public AdvancedPageChecker<AdvancedPage> Verify()
+        public AdvancedPageChecker Verify()
         {
             return checker;
         }
 
+        public virtual string GetUrl()
+        {
+            return url;
+        }
     }
 }

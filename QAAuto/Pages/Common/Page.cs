@@ -17,14 +17,14 @@ namespace QAAuto.Pages.Common
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T LoadPage<T>(T page) where T : Page, new();
+        T LoadPage<T>(AdvancedPage page) where T : AdvancedPage, new();
 
 
         /// <summary>
         /// this method can be overriden in any page object in order to perform custom actions on page load
         /// </summary>
         /// <returns></returns>
-        Page LoadPage();
+        AdvancedPage LoadPage();
 
 
         /// <summary>
@@ -38,5 +38,6 @@ namespace QAAuto.Pages.Common
         /// refresh current page
         /// </summary>
         void RefreshPage();
+
     }
 }

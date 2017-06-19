@@ -7,9 +7,10 @@ namespace QAAuto.Pages.Home
 {
     public class HomePage : AdvancedPage
     {
+        HomePageChecker checker;
         //Map
         #region Home Page Elements
-        [FindsBy(How = How.CssSelector, Using = "arc-navigation-button[ng-reflect-label='Review exceptions']")]
+        [FindsBy(How = How.XPath, Using = "//arc-navigation-button[contains(text(),'exception')]")]
         public IWebElement reviewExceptionsButton { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "div.section-column dashboard-section:nth-child(1) span")]
@@ -47,7 +48,29 @@ namespace QAAuto.Pages.Home
 
         #endregion
 
-        public HomePage(WebUser webUser) : base(webUser) { }
+        public HomePage() { }
+
+        public HomePage(WebUser webUser) : base(webUser)
+        {
+            url = "http://dfs-qa-arcfilingweb.azurewebsites.net/";
+            checker = new HomePageChecker(this);
+            PageFactory.InitElements(webUser.GetDriver(), this);
+        }
+
+        public override AdvancedPage LoadPage()
+        {
+            return this;
+        }
+
+        public new HomePageChecker Verify()
+        {
+            return checker;
+        }
+
+        public static string HomeUrl()
+        {
+            return "http://dfs-qa-arcfilingweb.azurewebsites.net/";
+        }
 
         #region Home Actions
 

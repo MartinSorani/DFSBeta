@@ -1,9 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Protractor;
 using QAAuto.Pages.Common;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace QAAuto.Pages.Home
@@ -46,6 +44,8 @@ namespace QAAuto.Pages.Home
 
         private static ConcurrentDictionary<WebUser, MainMenu> menu = new ConcurrentDictionary<WebUser, MainMenu>();
         private readonly MainMenuChecker checker;
+
+        public MainMenu() { }
 
         public MainMenu(WebUser webUser) : base(webUser)
         {
